@@ -32,13 +32,17 @@ function Payment() {
                 method: 'post',
                 //submits how much you will be deducting the client
                 //stripe expects that we send them sub units so we multiply the dollah with a 100 "$1=c100"
-                url: 'payments/create?total=${getBasketTotal(basket) * 100}'
+                url: `payments/create?total=${getBasketTotal(basket) * 100}`
+
             });
+            console.log({getBasketTotal});
             setClientSecret(response.data.clientSecret)
         }
 
         getClientSecret();
     }, [basket])
+
+    console.log("here's the secret API =====>", clientSecret)
 
     const handleSubmit = async (event) => {
         //stripe integration
@@ -52,11 +56,18 @@ function Payment() {
         }
     }).then(({ paymentIntent }) => {
         //this is gonna be the payment confirmation
+
+        //paymentIntent =   payment confirmation
+
         setSucceded(true);
         setError(null)
         setProcessing(false)
-
+        
+        dispatch({
+            type: "EMPTY_BASKET"
+        })
         history.replace('/orders')
+
     })
 }
 
