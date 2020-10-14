@@ -13,6 +13,7 @@
     "axios": "^0.20.0",
     "firebase": "^7.23.0",
     "firebase-auth": "^0.1.2",
+    "moment": "^2.29.1",
     "react": "^16.13.1",
     "react-currency-format": "^1.0.0",
     "react-dom": "^16.13.1",
