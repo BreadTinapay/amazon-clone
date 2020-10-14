@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { db } from "./firebase";
 import "./Orders.css";
-import { useSateValue } from "./StateProvider";
+import { useStateValue } from "./StateProvider";
+import Order from "./Order.js";
 
 function Orders() {
-    const [{ basket, user }, dispatch] = useSateValue();
-    const [orders, setOrders] = useState;([])
+    const [{ basket, user }, dispatch] = useStateValue();
+    const [orders, setOrders] = useState([]);
     
     useEffect(() => {
         if (user){
@@ -14,7 +15,7 @@ function Orders() {
             .collection('users')
             .doc(user?.uid)
             .colletion('orders')
-            orderBy('created', 'desc')
+            .orderBy('created', 'desc')
             .onSnapShot(snapshot => (
                 setOrders(snapshot.docs.map(doc => ({
                     id: doc.id,
