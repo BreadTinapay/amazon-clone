@@ -39,3 +39,7 @@
     height: 100px;
     margin-bottom: 15px;
   }
+
+  .product__button:hover {
+    cursor: pointer;
+  }
